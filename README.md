@@ -38,23 +38,27 @@ services:
 #      - ADMIN_TOKEN=your-admin-token-here
 
       # Домен вашего сервера
-      - DOMAIN=https://vault.lord-mikrotik.ru
+      - DOMAIN=https://vault.domain.com
 
       # Настройки безопасности
       - SIGNUPS_ALLOWED=true # Отключить регистрацию
       - INVITATIONS_ALLOWED=true # Разрешить приглашения
 ```
-### 2. Настраиваем nginx и получение сертификата
+### 1.2 поднимаем docker контейнер командой `docker compose up -d`
+### 2. Настраиваем nginx и получаем сертификат
 #### устанавливаем nginx и certbot
 ```bash
+apt install certbot python3-certbot-nginx nginx
+systemctl enable --now nginx
 ```
 
 ```
 nano /etc/nginx/sites-available/vault.domain.com
-##### Файл /etc/nginx/sites-available/vault.domain.com
+#####  Содержимое файла `vault.domain.com`
+```
 ```
 server {
-    server_name vault.lord-mikrotik.ru;
+    server_name vault.domain.com;
 
     location / {
         proxy_pass http://127.0.0.1:8080;
@@ -70,5 +74,10 @@ server {
 ln -s /etc/nginx/sites-available/memos.domain.com /etc/nginx/sites-enabled/
 systemctl restart nginx
 ```
-####  Получаем сетификат
+####  Получаем сетификат и еще раз перезапускаем nginx
+```bash
+certbot --nginx -d vault.doamin.com
+systemctl restart nginx
 ```
+### 4. Если мы все правильно сделали, то регистрируемся  на нащем сайте `vault.domain.com` , после  редактируем в `docker-compose.yml` параметр `SIGNUPS_ALLOWED` с `true` на `false` что бы запретить решистрацию если надо
+
