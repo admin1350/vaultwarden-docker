@@ -71,7 +71,7 @@ server {
 ```
 ### 3. Обязательно делаем ссылку без нее не будет работать и перезапускаем nginx
 ```bash
-ln -s /etc/nginx/sites-available/memos.domain.com /etc/nginx/sites-enabled/
+ln -s /etc/nginx/sites-available/vault.domain.com /etc/nginx/sites-enabled/
 systemctl restart nginx
 ```
 ####  Получаем сетификат и еще раз перезапускаем nginx
