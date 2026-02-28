@@ -54,8 +54,8 @@ systemctl enable --now nginx
 
 ```
 nano /etc/nginx/sites-available/vault.domain.com
-#####  Содержимое файла `vault.domain.com`
 ```
+#####  Содержимое файла `vault.domain.com`
 ```
 server {
     server_name vault.domain.com;
