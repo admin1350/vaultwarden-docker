@@ -1,5 +1,4 @@
-# vaultwarden-docker
-Meneger passwords vaulwarden on docker with nginx
+# r Meneger passwords vaulwarden on docker with nginx
 ## Домен `vault.domain.com` предоствлен как пример замените на свой иначе vaultwarden не заработает
 ### 1.  Создаем папку и файл `docker-compose.yml`
 
